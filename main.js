@@ -7,3 +7,17 @@ const cities = [];
 const prom = fetch(endpoint)
     .then(blob => blob.json())
     .then(data => cities.push(...data));
+
+// FUNCION PARA BUSCAR COINCIDENCIAS ENTRE UNA PALABRA Y UN ARREGLO
+function findMatches(wordToMatch, cities){
+
+    // Recorremos el arreglo de ciudades
+    // Y filtramos todas las ciudades que hacen match
+    return cities.filter(place => {
+        
+        const regex = new RegExp(wordToMatch, 'gi')
+        // si la ciudad actual coincide con la palabra a buscar, entonces retornar
+        return place.city.match(regex) || place.state.match(regex) 
+        
+    })
+}
